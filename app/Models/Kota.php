@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class Kota extends Model
+{
+    protected $table = "kota";
+    protected $fillable = ['nama', 'provinsi_id'];
+
+    public function provinsi(): BelongsTo
+    {
+        return $this->belongsTo(Provinsi::class);
+    }
+
+    public function kecamatan(): HasMany
+    {
+        return $this->hasMany(Kecamatan::class);
+    }
+}
