@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class KotaResource extends Resource
 {
@@ -55,4 +56,12 @@ class KotaResource extends Resource
             'edit' => EditKota::route('/{record}/edit'),
         ];
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Kota';
+    }
+
+
+    protected static string|UnitEnum|null $navigationGroup = 'Daerah';
 }

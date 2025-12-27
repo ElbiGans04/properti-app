@@ -15,7 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-
+use UnitEnum;
 class ProvinsiResource extends Resource
 {
     protected static ?string $model = Provinsi::class;
@@ -55,4 +55,12 @@ class ProvinsiResource extends Resource
             'edit' => EditProvinsi::route('/{record}/edit'),
         ];
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Provinsi';
+    }
+
+
+    protected static string|UnitEnum|null $navigationGroup = 'Daerah';
 }

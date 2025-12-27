@@ -15,7 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-
+use UnitEnum;
 class UnitResource extends Resource
 {
     protected static ?string $model = Unit::class;
@@ -55,4 +55,6 @@ class UnitResource extends Resource
             'edit' => EditUnit::route('/{record}/edit'),
         ];
     }
+
+        protected static string|UnitEnum|null $navigationGroup = 'Core Data';
 }
