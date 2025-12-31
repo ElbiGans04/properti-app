@@ -23,8 +23,8 @@ class MarketingsTable
             ])
             ->recordActions([
                 ViewAction::make(),
-                DeleteAction::make(),
                 EditAction::make(),
+                DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
