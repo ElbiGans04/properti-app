@@ -14,4 +14,9 @@ class Provinsi extends Model
     {
         return $this->hasMany(Kota::class);
     }
+
+    public function units(): HasMany
+    {
+        return $this->hasMany(Unit::class);
+    }
 }
