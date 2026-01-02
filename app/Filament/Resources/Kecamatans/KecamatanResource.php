@@ -21,7 +21,7 @@ class KecamatanResource extends Resource
 {
     protected static ?string $model = Kecamatan::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    // protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'Kecamatan';
 
@@ -65,4 +65,5 @@ class KecamatanResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Daerah';
     protected static ?string $pluralModelLabel = 'kecamatan';
+    protected static string|BackedEnum|null $navigationIcon = 'ionicon-home-outline';
 }

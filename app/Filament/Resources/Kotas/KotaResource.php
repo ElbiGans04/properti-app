@@ -21,7 +21,7 @@ class KotaResource extends Resource
 {
     protected static ?string $model = Kota::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    // protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'Kota';
 
@@ -65,4 +65,5 @@ class KotaResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Daerah';
     protected static ?string $pluralModelLabel = 'kota';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::BuildingLibrary;
 }

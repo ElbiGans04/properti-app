@@ -20,7 +20,7 @@ class MarketingResource extends Resource
 {
     protected static ?string $model = Marketing::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    // protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'marketing';
 
@@ -57,4 +57,5 @@ class MarketingResource extends Resource
     }
 
     protected static string|UnitEnum|null $navigationGroup = 'Core Data';
+    protected static string|BackedEnum|null $navigationIcon = 'ionicon-people-sharp';
 }

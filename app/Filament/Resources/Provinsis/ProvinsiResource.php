@@ -20,7 +20,7 @@ class ProvinsiResource extends Resource
 {
     protected static ?string $model = Provinsi::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    // protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'Provinsi';
 
@@ -65,4 +65,5 @@ class ProvinsiResource extends Resource
     protected static string|UnitEnum|null $navigationGroup = 'Daerah';
 
     protected static ?string $pluralModelLabel = 'provinsi';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::BuildingOffice2;
 }
