@@ -17,13 +17,13 @@ class ProvinsisTable
     {
         return $table
             ->columns([
-                TextColumn::make("nama")
+                TextColumn::make("nama")->searchable()
             ])
             ->filters([
                 //
             ])
             ->recordActions([
-                   ActionGroup::make([
+                ActionGroup::make([
                     ViewAction::make(),
                     EditAction::make(),
                     DeleteAction::make(),

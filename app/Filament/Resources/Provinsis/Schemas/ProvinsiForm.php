@@ -11,7 +11,7 @@ class ProvinsiForm
     {
         return $schema
             ->components([
-                TextInput::make("nama")
+                TextInput::make("nama")->required()->maxLength(100)->placeholder('Banten'),
             ]);
     }
 }

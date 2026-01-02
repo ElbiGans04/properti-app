@@ -13,7 +13,7 @@ class KotaForm
     {
         return $schema
             ->components([
-                TextInput::make("nama")->required(true),
+                TextInput::make("nama")->required(true)->placeholder("Tangerang. Note: Tanpa 'Kota/Kabupaten'")->maxLength(100),
                 Select::make("provinsi_id")->relationship(name: 'provinsi', titleAttribute: 'nama')->searchable()
                     ->preload()->required(true)
             ]);

@@ -68,11 +68,11 @@ class UnitForm
 
                     // Spek Unit
                     Section::make("Spesifikasi Unit")->description("Spesifikasi Detail Tentang Unit Terkait")->schema([
-                        TextInput::make("judul")->required(),
-                        Textarea::make("deskripsi")->required()->label("Deskripsi"),
+                        TextInput::make("judul")->required()->placeholder("Dijual Gudang Murah Di Jl. Raya H Tabri")->maxLength(100),
+                        Textarea::make("deskripsi")->required()->placeholder("Sale: \n\n - Akses Kontainer 40 Feet\n\n Dijual Gudang Murah DI Cirarab")->maxLength(1000)->label("Deskripsi"),
                         Grid::make()->columns(2)->schema([
-                            TextInput::make("luas_tanah")->label("Luas Tanah")->required()->numeric(),
-                            TextInput::make("luas_bangunan")->label("Luas Bangunan")->required()->numeric(),
+                            TextInput::make("luas_tanah")->label("Luas Tanah")->required()->numeric()->placeholder("10000000000"),
+                            TextInput::make("luas_bangunan")->label("Luas Bangunan")->required()->numeric()->placeholder("10000000000"),
                         ]),
                         Radio::make("legalitas")->label("Legalitas")->options([
                             "SHM" => "SHM",
@@ -100,10 +100,10 @@ class UnitForm
                     Section::make("Harga")->description("Harga unit properti")->schema(function ($get) {
                         $selected = match ($get('jenis_transaksi')) {
                             "JUAL" => [
-                                TextInput::make("harga_jual")->label("Harga Jual")->numeric()->required(),
+                                TextInput::make("harga_jual")->label("Harga Jual")->numeric()->placeholder("10000000")->required(),
                             ],
                             "SEWA" => [
-                                TextInput::make("harga_sewa")->label("Harga Sewa")->numeric()->required(),
+                                TextInput::make("harga_sewa")->label("Harga Sewa")->numeric()->placeholder("10000000")->required(),
                                 Radio::make("harga_sewa_tipe")->options([
                                     "HARGA_SEWA_PERTAHUN" => "Harga Sewa Per Tahun",
                                     "HARGA_SEWA_PERBULAN" => "Harga Sewa Per Bulan"
@@ -117,8 +117,8 @@ class UnitForm
 
                     // Alamat
                     Section::make("Lokasi")->description("Tempat lokasi unit")->schema([
-                        Textarea::make("alamat")->required(),
-                        TextInput::make("link_maps")->label("Tautan Google Maps")->url()->required(),
+                        Textarea::make("alamat")->required()->placeholder("Jl. Raya H Tabri Kec. Legok Kab. Tangerang")->maxLength(250),
+                        TextInput::make("link_maps")->label("Tautan Google Maps")->url()->required()->placeholder("http://localhost:8000/admin-properti/units/create")->maxLength(250),
                         Grid::make()->columns(2)->schema([
                             Select::make("provinsi_id")->label("Provinsi")->required()->relationship(name: 'provinsi', titleAttribute: 'nama')->preload()->searchable()->live()->afterStateUpdated(function ($set) {
                                 $set('kota_id', '');
@@ -144,14 +144,14 @@ class UnitForm
 
                     // Link Tautan
                     Section::make("Sosial Media")->description("Tautan Postingan Sosial Media terkait unit ini")->schema([
-                        TextInput::make("link_post_fb")->label("Tautan Facebook")->url(),
-                        TextInput::make("link_post_ig")->label("Tautan Instagram")->url(),
-                        TextInput::make("link_post_yt")->label("Tautan Tiktok")->url(),
-                        TextInput::make("link_post_tt")->label("Tautan Youtube")->url(),
+                        TextInput::make("link_post_fb")->maxLength(200)->label("Tautan Facebook")->url()->placeholder("http://localhost:8000/admin-properti/units/create"),
+                        TextInput::make("link_post_ig")->maxLength(200)->label("Tautan Instagram")->url()->placeholder("http://localhost:8000/admin-properti/units/create"),
+                        TextInput::make("link_post_yt")->maxLength(200)->label("Tautan Tiktok")->url()->placeholder("http://localhost:8000/admin-properti/units/create"),
+                        TextInput::make("link_post_tt")->maxLength(200)->label("Tautan Youtube")->url()->placeholder("http://localhost:8000/admin-properti/units/create"),
                     ])->columns(2),
 
                     // Notes
-                    Textarea::make("note"),
+                    Textarea::make("note")->placeholder("Keterangan tambahan yang harus disertakan")->maxLength(1500),
                 ])->columnSpanFull()
             ]);
     }

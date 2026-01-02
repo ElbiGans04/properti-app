@@ -11,7 +11,7 @@ class MarketingForm
     {
         return $schema
             ->components([
-                TextInput::make("nama")->required(true)->maxLength(100)->label('Name')
+                TextInput::make("nama")->required(true)->maxLength(100)->label('Name')->placeholder("Rhafael Bijaksana")
             ]);
     }
 }

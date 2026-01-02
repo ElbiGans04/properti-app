@@ -9,6 +9,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class KotasTable
@@ -17,11 +18,11 @@ class KotasTable
     {
         return $table
             ->columns([
-                TextColumn::make("nama"),
+                TextColumn::make("nama")->searchable(),
                 TextColumn::make('provinsi.nama'),
             ])
             ->filters([
-                //
+                SelectFilter::make("provinsi")->relationship('provinsi', 'nama'),
             ])
             ->recordActions([
                 ActionGroup::make([

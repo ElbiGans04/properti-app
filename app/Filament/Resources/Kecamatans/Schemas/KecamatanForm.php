@@ -12,7 +12,7 @@ class KecamatanForm
     {
         return $schema
             ->components([
-                TextInput::make("nama")->required(),
+                TextInput::make("nama")->required()->placeholder('Legok')->maxLength(100),
                 Select::make("kota_id")->relationship(name: 'kota', titleAttribute: 'nama')->searchable()
                     ->preload()->required(true)
             ]);
