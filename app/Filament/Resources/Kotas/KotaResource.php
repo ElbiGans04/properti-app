@@ -64,4 +64,5 @@ class KotaResource extends Resource
 
 
     protected static string|UnitEnum|null $navigationGroup = 'Daerah';
+    protected static ?string $pluralModelLabel = 'kota';
 }
