@@ -17,7 +17,7 @@ class MarketingsTable
     {
         return $table
             ->columns([
-                TextColumn::make("nama")->label('Name')->sortable()
+                TextColumn::make("nama")->label('Nama')->sortable()
             ])
             ->filters([
                 //
