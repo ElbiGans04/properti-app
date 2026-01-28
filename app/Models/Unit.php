@@ -44,6 +44,16 @@ class Unit extends Model
         return $this->belongsTo(Provinsi::class);
     }
 
+    public function kota(): BelongsTo
+    {
+        return $this->belongsTo(Kota::class);
+    }
+
+    public function kecamatan(): BelongsTo
+    {
+        return $this->belongsTo(Kecamatan::class);
+    }
+
     public function images(): HasMany
     {
         return $this->hasMany(Image::class);
