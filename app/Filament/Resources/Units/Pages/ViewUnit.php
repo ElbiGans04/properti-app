@@ -42,15 +42,24 @@ class ViewUnit extends ViewRecord
                         TextEntry::make('deskripsi'),
                     ]),
                     Section::make("Data Properti")->schema([
-                        TextEntry::make('luas_tanah'),
-                        TextEntry::make('luas_bangunan'),
+                        TextEntry::make('luas_tanah')->numeric(),
+                        TextEntry::make('luas_bangunan')->numeric(),
                         TextEntry::make('legalitas'),
                         TextEntry::make('hadap'),
                     ])->columns(2),
                     Section::make("Harga Properti")->schema([
-                        TextEntry::make('harga_jual'),
-                        TextEntry::make('harga_sewa'),
-                        TextEntry::make('harga_sewa_tipe'),
+                        TextEntry::make('harga_jual')->visible(function ($get) {
+                            $harga_sewa = $get('jenis_transaksi');
+                            return $harga_sewa === "JUAL";
+                        })->money('IDR'),
+                        TextEntry::make('harga_sewa')->visible(function ($get) {
+                            $harga_sewa = $get('jenis_transaksi');
+                            return $harga_sewa === "SEWA";
+                        })->money('IDR'),
+                        TextEntry::make('harga_sewa_tipe')->visible(function ($get) {
+                            $harga_sewa = $get('jenis_transaksi');
+                            return $harga_sewa === "SEWA";
+                        }),
                     ]),
                     Section::make("Sosial Media")->schema([
                         TextEntry::make('link_post_fb')->default('-'),
