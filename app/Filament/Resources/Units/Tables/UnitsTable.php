@@ -29,8 +29,11 @@ class UnitsTable
                 })->label('Tipe'),
                 TextColumn::make("judul")->searchable(),
                 TextColumn::make(name: "jenis_unit"),
-                TextColumn::make("luas_tanah")->label('LT - LB')->formatStateUsing(fn ($state, $record) => $state . ' m - ' . $record->luas_bangunan . ' m'),
-                TextColumn::make("provinsi.nama")->label('Alamat')->formatStateUsing(fn ($state, $record) => $state . ' - ' . $record->kota['nama']),
+                TextColumn::make("luas_tanah")->label('LT - LB')->formatStateUsing(function ($state, $record) {
+                    $jenis = $record->jenis_unit;
+                    return $jenis == "TANAH" ? $state . ' m' : $state . ' m - ' . $record->luas_bangunan . ' m';
+                }),
+                TextColumn::make("provinsi.nama")->label('Alamat')->formatStateUsing(fn($state, $record) => $state . ' - ' . $record->kota['nama']),
             ])
             ->filters([
                 SelectFilter::make("marketings")->relationship('marketing', 'nama'),

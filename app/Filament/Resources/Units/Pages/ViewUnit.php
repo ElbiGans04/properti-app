@@ -43,7 +43,10 @@ class ViewUnit extends ViewRecord
                     ]),
                     Section::make("Data Properti")->schema([
                         TextEntry::make('luas_tanah')->numeric(),
-                        TextEntry::make('luas_bangunan')->numeric(),
+                        TextEntry::make('luas_bangunan')->numeric()->visible(function ($get){
+                            $jenis_unit = $get('jenis_unit');
+                            return $jenis_unit !== 'TANAH';
+                        }),
                         TextEntry::make('legalitas'),
                         TextEntry::make('hadap'),
                     ])->columns(2),
