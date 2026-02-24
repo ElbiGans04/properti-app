@@ -26,18 +26,30 @@ class UnitsTable
                 TextColumn::make("jenis_transaksi")->badge()->color(fn(string $state): string => match ($state) {
                     'JUAL' => 'success',
                     'SEWA' => 'danger',
-                })->label('Tipe'),
-                TextColumn::make("judul")->searchable(),
-                TextColumn::make(name: "jenis_unit"),
+                })->label('Tipe')->sortable(),
+                TextColumn::make("judul")->searchable()->sortable(),
+                TextColumn::make(name: "jenis_unit")->sortable(),
                 TextColumn::make("luas_tanah")->label('LT - LB')->formatStateUsing(function ($state, $record) {
                     $jenis = $record->jenis_unit;
                     return $jenis == "TANAH" ? $state . ' m' : $state . ' m - ' . $record->luas_bangunan . ' m';
                 }),
-                TextColumn::make("provinsi.nama")->label('Alamat')->formatStateUsing(fn($state, $record) => $state . ' - ' . $record->kota['nama']),
+                TextColumn::make("provinsi.nama")->label('Alamat')->formatStateUsing(fn($state, $record) => $state . ' - ' . $record->kota['nama'])->sortable(),
             ])
             ->filters([
+                SelectFilter::make("jenis_unit")->options([
+                    'APARTEMENT' => 'Apartement',
+                    'GUDANG' => 'Gudang',
+                    'PABRIK' => 'Pabrik',
+                    'RUKO' => 'Ruko',
+                    'TANAH' => 'Tanah',
+                    'LAINNYA' => 'Lainnya'
+                ])->label("Jenis Unit"),
+                SelectFilter::make("jenis_transaksi")->options([
+                    'SEWA' => 'Sewa',
+                    'JUAL' => 'Jual',
+                ])->label("Jenis Transaksi"),
                 SelectFilter::make("marketings")->relationship('marketing', 'nama'),
-                SelectFilter::make("provinsi")->relationship("provinsi", 'nama')
+                SelectFilter::make("provinsi")->relationship("provinsi", 'nama'),
             ])
             ->recordActions([
                 ActionGroup::make([
