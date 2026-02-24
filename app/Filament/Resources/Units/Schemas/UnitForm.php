@@ -63,7 +63,8 @@ class UnitForm
                             "TANAH" => "Tanah",
                             "LAINNYA" => "Lainnya"
                         ])->inline()->required(),
-                        Checkbox::make("is_lelang")->label("Apakah Ini Unit Lelang ?")->inline()
+                        Checkbox::make("is_lelang")->label("Apakah Ini Unit Lelang ?")->inline(),
+                        Checkbox::make("is_ready")->label("Apakah Tanah / Bangunan Ini Siap ?")->inline()->default(true),
                     ]),
 
                     // Spek Unit
@@ -172,6 +173,9 @@ class UnitForm
                         TextInput::make("link_post_tt")->maxLength(200)->label("Tautan Youtube")->url()->placeholder(function (string $operation) {
                             return $operation == "view" ? "-" : "http://localhost:8000/admin-properti/units/create";
                         }),
+                        TextInput::make("link_post_lamudi")->maxLength(200)->label("Tautan Lamudi")->url()->placeholder(function (string $operation) {
+                            return $operation == "view" ? "-" : "http://localhost:8000/admin-properti/units/create";
+                        })->columnSpan(2),
                     ])->columns(2),
 
                     // Notes

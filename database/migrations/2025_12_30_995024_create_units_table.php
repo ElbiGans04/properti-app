@@ -8,8 +8,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -25,7 +24,7 @@ return new class extends Migration
             $table->integer('luas_tanah')->required();
             $table->integer('luas_bangunan')->default(0);
             $table->enum('legalitas', ['SHM', 'SHGB', 'GIRIK', 'AJB', 'SHGU', 'TRADISIONAL', 'LAINNYA']);
-            $table->enum('hadap', ['UTARA', 'BARAT', 'SELATAN', 'TIMUR']);  
+            $table->enum('hadap', ['UTARA', 'BARAT', 'SELATAN', 'TIMUR']);
             $table->foreignIdFor(Marketing::class);
             $table->decimal('harga_jual', 15, 2)->nullable();
             $table->decimal('harga_sewa', 15, 2)->nullable();
@@ -34,6 +33,8 @@ return new class extends Migration
             $table->string('link_post_ig')->nullable();
             $table->string('link_post_yt')->nullable();
             $table->string('link_post_tt')->nullable();
+            $table->string('link_post_lamudi')->nullable();
+            $table->boolean('is_ready')->default(true); // apakah bangunan / tanahnya ready ?
             $table->text('note')->nullable();
             $table->string('link_maps');
             $table->text('alamat');

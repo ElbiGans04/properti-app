@@ -36,14 +36,19 @@ class ViewUnit extends ViewRecord
                         Grid::make(2)->schema([
                             TextEntry::make('jenis_transaksi'),
                             TextEntry::make('jenis_unit'),
-                            TextEntry::make('is_lelang')->label("Apakah Properti Lelang ?")->default('Tidak'),
+                            TextEntry::make('is_lelang')->label("Apakah Properti Lelang ?")->formatStateUsing(function (bool $state) {
+                                return $state ? "LELANG" : "BUKAN LELANG";
+                            }),
+                            TextEntry::make('is_ready')->label("Apakah Tanah / Bangunan Ready ?")->formatStateUsing(function (bool $state) {
+                                return $state ? "READY" : "TIDAK READY";
+                            }),
                         ]),
                         TextEntry::make('judul'),
                         TextEntry::make('deskripsi'),
                     ]),
                     Section::make("Data Properti")->schema([
                         TextEntry::make('luas_tanah')->numeric(),
-                        TextEntry::make('luas_bangunan')->numeric()->visible(function ($get){
+                        TextEntry::make('luas_bangunan')->numeric()->visible(function ($get) {
                             $jenis_unit = $get('jenis_unit');
                             return $jenis_unit !== 'TANAH';
                         }),
@@ -65,10 +70,11 @@ class ViewUnit extends ViewRecord
                         }),
                     ]),
                     Section::make("Sosial Media")->schema([
-                        TextEntry::make('link_post_fb')->default('-'),
-                        TextEntry::make('link_post_ig')->default('-'),
-                        TextEntry::make('link_post_yt')->default('-'),
-                        TextEntry::make('link_post_tt')->default('-'),
+                        TextEntry::make('link_post_fb')->label("Link Postingan Facebook")->default('-'),
+                        TextEntry::make('link_post_ig')->label("Link Postingan Instagram")->default('-'),
+                        TextEntry::make('link_post_yt')->label("Link Postingan Youtube")->default('-'),
+                        TextEntry::make('link_post_tt')->label("Link Postingan Tiktok")->default('-'),
+                        TextEntry::make('link_post_lamudi')->label("Link Postingan Lamudi")->default('-')->columnSpan(2),
                     ])->columns(2),
                     Section::make("Alamat")->description("Alamat Lengkap Dari Properti")->schema([
                         TextEntry::make('link_maps')->default('-'),
